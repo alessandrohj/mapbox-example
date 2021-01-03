@@ -39,6 +39,7 @@ const APP = {
     //pitch listener
     //TODO:
     //geolocation listener
+    document.body.addEventListener('click', APP.getPosition);
     //TODO:
     //image load and error listener
     let img = document.getElementById('map');
