@@ -82,6 +82,7 @@ const APP = {
     img.alt = 'loading new map image';
     img.src = url;
   },
+  //TODO: add a geolocation error failure
 };
 
 document.addEventListener('DOMContentLoaded', APP.init);
