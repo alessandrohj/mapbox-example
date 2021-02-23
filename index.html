@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="css/main.css" />
     <script type="module" src="js/main.js"></script>
   </head>
-  <body>
-    <nav>
+  <body class=" has-background-primary-light">
+    <section class="section">
+      <div class="container">
+    <nav class="navbar has-text-success-dark has-background-primary-light" role="navigation" aria-label="dropdown navigation">
       <p>
-        <label for="zoom">Zoom Level</label>
-        <select id="zoom">
+        <label class="is-size-5-mobile is-size-4-tablet has-text-centered" for="zoom">Zoom Level</label>
+        <select class="is-size-7-mobile is-size-6-tablet has-background-info-light" id="zoom">
           <option value="7">7</option>
           <option value="8">8</option>
           <option value="9">9</option>
@@ -23,8 +25,8 @@
         </select>
       </p>
       <p>
-        <label for="pitch">View Angle</label>
-        <select id="pitch">
+        <label class="is-size-5-mobile is-size-4-tablet has-text-centered" for="pitch">View Angle</label>
+        <select class="is-size-7-mobile is-size-6-tablet has-background-info-light" id="pitch">
           <option value="15">15</option>
           <option value="30">30</option>
           <option value="45">45</option>
@@ -32,8 +34,8 @@
         </select>
       </p>
       <p>
-        <label for="style">Map Style</label>
-        <select id="style">
+        <label class="is-size-5-mobile is-size-4-tablet has-text-centered" for="style">Map Style</label>
+        <select class="is-size-7-mobile is-size-6-tablet has-background-info-light" id="style">
           <option value="streets-v11" selected>Streets</option>
           <option value="outdoors-v11">Outdoors</option>
           <option value="light-v10">Light</option>
@@ -44,7 +46,17 @@
     </nav>
     <main>
       <!-- image will load here -->
+      <figure class="image is-5by3">
       <img src="" id="map" alt="" />
+    </figure>
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content has-text-white-bis">
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
     </main>
+  </div>
+  </section>
   </body>
 </html>

@@ -10,7 +10,7 @@ Available styles
 // streets-v11, outdoors-v11, light-v10, dark-v10, satellite-v9
 */
 
-const GEO = null;
+import {GEO} from './geo.js';
 //TODO: create your own module that uses navigator.geolocation
 // and import it
 
@@ -25,7 +25,7 @@ const APP = {
   size: '1000x600',
   //TODO: replace this token with one of your own
   token:
-    'pk.eyJ1Ijoic3RldmVncmlmZml0aCIsImEiOiJja2pnamd1dHoyaDdvMnNuMG5mMmlieXdvIn0.KbiXqVd8ymvPhxBY-FzTTw',
+    'pk.eyJ1IjoiZGVqZTAwMTQiLCJhIjoiY2tsZ3I1MDQwMGYwaTJ2cXBlZDB6and1ZiJ9.unGcGIInzxxQuShNOc-qdw',
   init() {
     APP.addListeners();
     //initial load with default image
@@ -37,9 +37,10 @@ const APP = {
     //style listener
     document.getElementById('style').addEventListener('change', APP.setStyle);
     //pitch listener
+    document.getElementById('pitch').addEventListener('change', APP.setPitch);
     //TODO:
     //geolocation listener
-    document.body.addEventListener('click', APP.getPosition);
+    document.querySelector('#map').addEventListener('click', APP.getPosition);
     //TODO:
     //image load and error listener
     let img = document.getElementById('map');
@@ -49,6 +50,15 @@ const APP = {
     img.addEventListener('error', (err) => {
       img.alt = `Failed to load map image. ${err.message}`;
     });
+    // Modal Listener
+    document.querySelector('.modal-close').addEventListener('click', ()=>{
+      document.querySelector('.modal').classList.remove('is-active');
+    })
+    document.body.addEventListener('click', ()=>{
+      document.querySelector('.modal').classList.remove('is-active');
+    })
+    
+
   },
   setZoom(ev) {
     let select = ev.target;
@@ -60,11 +70,21 @@ const APP = {
     APP.style = select.value;
     APP.loadMap();
   },
+  setPitch(ev) {
+    let select = ev.target;
+    APP.pitch = select.value;
+    APP.loadMap();
+  },
+  changeOptions: (accuracy, age, time) => {
+    // change options
+    GEO.changeOptions(accuracy, age, time);
+  },
   getPosition() {
     //use the imported GEO object
     //TODO:
     //to fetch the current position and
-    //call loadMap with new position
+    //call loadMap with new position;
+    GEO.getLocation(APP.loadMap, APP.failed)
   },
   loadMap(pos) {
     if (pos) {
@@ -83,7 +103,17 @@ const APP = {
     img.alt = 'loading new map image';
     img.src = url;
   },
-  //TODO: add a geolocation error failure
+    //TODO: add a geolocation error failure
+  failed: (err) => {
+  let modalContent = document.querySelector('.modal-content');
+  modalContent.innerHTML = "";
+  let p = document.createElement('p');
+  p.textContent = err.message;
+  // append message and show modal
+  modalContent.append(p);
+  document.querySelector('.modal').classList.add('is-active');
+  
+  }
 };
 
 document.addEventListener('DOMContentLoaded', APP.init);

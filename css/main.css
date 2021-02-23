@@ -1,3 +1,6 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css";
+
+
 html {
   font-size: 20px;
   font-weight: 300;
@@ -7,8 +10,8 @@ html {
 }
 body {
   min-height: 100vh;
-  background-color: #333;
-  color: #eee;
+  /* background-color: white; */
+  /* color: #eee; */
   padding: 0;
   margin: 0;
 }
@@ -24,4 +27,13 @@ main {
 }
 main img {
   width: 100%;
+  border: 2px solid black;
+}
+
+label {
+ /* color: black; */
+}
+.modal-content {
+  /* background-color: white; */
+  width: fit-content;
 }
